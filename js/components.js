@@ -65,6 +65,29 @@ function initializeAfterLoad() {
     setLanguage(savedLang);
   }
   
+  // Re-initialize IntersectionObserver for fade-in elements
+  const fadeElements = document.querySelectorAll('.fade-in');
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  fadeElements.forEach(el => fadeObserver.observe(el));
+  
+  // Re-initialize mobile menu toggle
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+  }
+  
   // Dispatch custom event for other scripts to hook into
   document.dispatchEvent(new CustomEvent('componentsLoaded'));
 }
