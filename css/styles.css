@@ -695,6 +695,8 @@ footer {
   
   .menu-toggle {
     display: flex;
+    position: relative;
+    z-index: 1000; /* Acima do menu overlay (z-index: 999) */
   }
   
   .menu-toggle.active span:nth-child(1) {
