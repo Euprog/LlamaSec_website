@@ -1,0 +1,168 @@
+<!-- ========== Technical Details Section ========== -->
+<section id="technical" class="content-section">
+    <div class="section-container">
+        <div class="section-header fade-in">
+            <h2 data-i18n="technical.title">Detalhes Técnicos</h2>
+        </div>
+        
+        <div class="glass-card fade-in">
+            <h3 data-i18n="technical.hyperparams.title">Hiperparâmetros</h3>
+            <div class="grid grid-3">
+                <div>
+                    <p><strong>Learning Rate:</strong></p>
+                    <code><!-- 📝 TODO --> 2e-4</code>
+                </div>
+                <div>
+                    <p><strong>Batch Size:</strong></p>
+                    <code><!-- 📝 TODO --> 8</code>
+                </div>
+                <div>
+                    <p><strong>Max Sequence Length:</strong></p>
+                    <code><!-- 📝 TODO --> 2048</code>
+                </div>
+                <div>
+                    <p><strong>Epochs:</strong></p>
+                    <code>10 (Best: 6)</code>
+                </div>
+                <div>
+                    <p><strong>Steps/Epoch:</strong></p>
+                    <code>141</code>
+                </div>
+                <div>
+                    <p><strong>Optimizer:</strong></p>
+                    <code>Paged AdamW 32bit</code>
+                </div>
+                <div>
+                    <p><strong>Warmup Ratio:</strong></p>
+                    <code>0.03</code>
+                </div>
+                <div>
+                    <p><strong>Weight Decay:</strong></p>
+                    <code><!-- 📝 TODO --> 0.01</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Training Log Section -->
+        <div class="glass-card fade-in">
+            <h3 data-i18n="technical.log.title">Log de Treinamento Real</h3>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--glass-border); text-align: left;">
+                            <th style="padding: 8px;">Epoch</th>
+                            <th style="padding: 8px;">Training Loss</th>
+                            <th style="padding: 8px;">Validation Loss</th>
+                            <th style="padding: 8px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 8px;">1</td>
+                            <td style="padding: 8px;">0.823400</td>
+                            <td style="padding: 8px;">0.805531</td>
+                            <td style="padding: 8px;">Initializing</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 8px;">2</td>
+                            <td style="padding: 8px;">0.711900</td>
+                            <td style="padding: 8px;">0.726318</td>
+                            <td style="padding: 8px;">Learning</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 8px;">4</td>
+                            <td style="padding: 8px;">0.622500</td>
+                            <td style="padding: 8px;">0.668585</td>
+                            <td style="padding: 8px;">Improving</td>
+                        </tr>
+                        <tr style="background: rgba(46, 204, 113, 0.1); border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 8px; font-weight: bold; color: #2ecc71;">6 (Best)</td>
+                            <td style="padding: 8px;">0.556600</td>
+                            <td style="padding: 8px; font-weight: bold;">0.651145</td>
+                            <td style="padding: 8px; color: #2ecc71;">Optimal Point</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 8px;">8</td>
+                            <td style="padding: 8px;">0.491900</td>
+                            <td style="padding: 8px;">0.653825</td>
+                            <td style="padding: 8px; opacity: 0.7;">Overfitting Start</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">10</td>
+                            <td style="padding: 8px;">0.442100</td>
+                            <td style="padding: 8px;">0.676333</td>
+                            <td style="padding: 8px; opacity: 0.7;">Stopped</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="glass-card fade-in">
+            <h3 data-i18n="technical.architecture.title">Arquitetura do Modelo (QLoRA)</h3>
+            <pre><code>TinyLlama 1.1B
+├── Base Model: TinyLlama-1.1B-Chat-v1.0
+├── Quantization: 4-bit Normal Float (NF4)
+├── Target Modules: q_proj, k_proj, v_proj, o_proj
+├── Trainable Params: 4,505,600 (0.41%)
+├── LoRA Rank (r): 16
+└── LoRA Alpha: 32</code></pre>
+        </div>
+        
+        <div class="glass-card fade-in">
+            <h3 data-i18n="technical.inference.title">Configuração de Inferência</h3>
+            <div class="grid grid-3">
+                <div>
+                    <p><strong>Temperature:</strong></p>
+                    <code>0.7 (Creativity)</code>
+                </div>
+                <div>
+                    <p><strong>Top-P:</strong></p>
+                    <code>0.95 (Nucleus)</code>
+                </div>
+                <div>
+                    <p><strong>Top-K:</strong></p>
+                    <code>50</code>
+                </div>
+            </div>
+        </div>
+        
+        <div class="glass-card fade-in">
+            <h3 data-i18n="technical.requirements.title">Requisitos do Sistema</h3>
+            <div class="grid grid-2">
+                <div>
+                    <h4 data-i18n="technical.requirements.training">Treinamento (Google Colab)</h4>
+                    <ul>
+                        <li data-i18n="technical.requirements.gpu.train">GPU: NVIDIA Tesla T4 (15GB VRAM)</li>
+                        <li data-i18n="technical.requirements.stack">Stack: Transformers, TRL, Accelerate</li>
+                        <li data-i18n="technical.requirements.eval">Avaliação: Evaluate, NLTK, ROUGE</li>
+                        <li data-i18n="technical.requirements.time">Tempo Total: ~2h 10m (131 min)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 data-i18n="technical.requirements.inference">Inferência</h4>
+                    <ul>
+                        <li data-i18n="technical.requirements.gpu.inf">GPU: RTX 3060 12GB+</li>
+                        <li data-i18n="technical.requirements.ram">RAM: 16GB+</li>
+                        <li data-i18n="technical.requirements.storage">Storage: 10GB+</li>
+                        <li data-i18n="technical.requirements.latency">Latência: <100ms</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="glass-card fade-in">
+            <h3 data-i18n="technical.dependencies.title">Dependências Principais</h3>
+            <pre><code>transformers
+trl
+peft
+accelerate
+bitsandbytes
+evaluate
+rouge_score
+nltk
+torch
+datasets</code></pre>
+        </div>
+    </div>
+</section>

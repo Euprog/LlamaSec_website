@@ -1,0 +1,127 @@
+<!-- ========== Results Section ========== -->
+<section id="results" class="content-section">
+    <div class="section-container">
+        <div class="section-header fade-in">
+            <h2 data-i18n="results.title">Resultados</h2>
+        </div>
+        
+        <!-- Key Metrics -->
+        <div class="stats-grid fade-in">
+            <div class="stat-card">
+                <span class="stat-value" data-value="45">0.45</span>
+                <span class="stat-label">ROUGE-1 (F-measure)</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" data-value="40">0.40</span>
+                <span class="stat-label">ROUGE-L (F-measure)</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-value" data-value="1.1">0</span>
+                <span class="stat-label" data-i18n="results.stats.params">Parâmetros (B)</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" data-value="6">0</span>
+                <span class="stat-label" data-i18n="results.stats.epochs">Épocas Treinamento</span>
+            </div>
+        </div>
+        
+        <!-- 📝 TODO: Adicione seus gráficos aqui -->
+        <div class="glass-card fade-in">
+            <h3 data-i18n="results.metrics.title">Métricas de Performance</h3>
+            <div class="grid grid-2" style="gap: 2rem; margin-top: 1rem; margin-bottom: 1rem;">
+                <div>
+                    <h4 style="margin-bottom: 0.5rem; font-size: 1rem; color: var(--color-text-secondary);" data-i18n="results.metrics.loss">Convergência (Loss)</h4>
+                    <img src="assets/images/grafico_loss.png" alt="Gráfico de Loss: Treinamento vs Validação" class="zoomable" style="width: 100%; height: 300px; object-fit: contain; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02);">
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem; font-size: 1rem; color: var(--color-text-secondary);" data-i18n="results.metrics.quality">Qualidade (ROUGE)</h4>
+                    <img src="assets/images/grafico_rouge.png" alt="Gráfico de Métricas ROUGE" class="zoomable" style="width: 100%; height: 300px; object-fit: contain; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02);">
+                </div>
+            </div>
+            <p data-i18n="results.metrics.text">
+                Os gráficos acima ilustram a estabilidade do treinamento (esquerda) e a qualidade das explicações geradas (direita). 
+                Observa-se que o modelo evita overfitting mantendo a loss de validação controlada, enquanto atinge seu pico de 
+                performance ROUGE com janelas de 512 tokens.
+            </p>
+        </div>
+
+        <!-- New Case Study Section -->
+        <div class="glass-card fade-in">
+            <h3 data-i18n="results.casestudy.title">Estudo de Caso: SQL Injection</h3>
+            <p style="margin-bottom: 1rem;" data-i18n="results.casestudy.desc">Comparação direta entre o output gerado pelo TinyLlama 1.1B (Fine-tuned) e a Referência (Teacher).</p>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <h4 style="font-size: 0.9rem; color: #888; margin-bottom: 0.5rem;" data-i18n="results.casestudy.input">Entrada (Log Snort)</h4>
+                <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 6px; font-family: 'Fira Code', monospace; font-size: 0.8rem; border: 1px solid var(--glass-border);">
+                    [12/08-00:51:19.501356] ET WEB_SERVER SQL Errors in HTTP 200 Response (mysql_query) 83.170.101.10:80 -> 192.168.13.10:1039<br>
+                    Protocol: TCP TTL:128 ...
+                </div>
+            </div>
+
+            <div class="grid grid-2" style="gap: 1.5rem;">
+                <div>
+                    <h4 style="color: var(--color-primary); margin-bottom: 0.5rem;" data-i18n="results.casestudy.generated">TinyLlama 1.1B (Gerado)</h4>
+                    <div style="background: rgba(46, 204, 113, 0.05); padding: 1rem; border-radius: 6px; font-size: 0.85rem; border: 1px solid rgba(46, 204, 113, 0.2); height: 100%;">
+                        <p style="margin-bottom: 0.5rem;" data-i18n="results.casestudy.threat"><strong>Ameaça Provável:</strong></p>
+                        <p data-i18n="results.casestudy.threat.gen">SQL Injection/SQL Inspeção. O alerta sugere que um atacante está tentando explorar uma falha na aplicação para inserir texto malicioso.</p>
+                        <p style="margin-top: 1rem; margin-bottom: 0.5rem;" data-i18n="results.casestudy.actions"><strong>Ações Recomendadas:</strong></p>
+                        <ol style="padding-left: 1.2rem;">
+                            <li data-i18n="results.casestudy.action1.gen">Isolar o Servidor: Imediatamente, isole o servidor web (192.168.13.10).</li>
+                            <li data-i18n="results.casestudy.action2.gen">Investigar Logs: Analise logs do servidor (Apache/Nginx).</li>
+                            <li data-i18n="results.casestudy.action3.gen">Analisar Tráfego: Verifique conexão HTTP 83.170.101.10.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="color: var(--color-text-secondary); margin-bottom: 0.5rem;" data-i18n="results.casestudy.reference">Referência (Ideal)</h4>
+                    <div style="background: rgba(255, 255, 255, 0.02); padding: 1rem; border-radius: 6px; font-size: 0.85rem; border: 1px solid var(--glass-border); height: 100%;">
+                        <p style="margin-bottom: 0.5rem;" data-i18n="results.casestudy.threat"><strong>Ameaça Provável:</strong></p>
+                        <p data-i18n="results.casestudy.threat.ref">Tentativa de SQL Injection. O servidor está respondendo com erros SQL (mysql_query) em páginas HTTP 200, indicando falha no tratamento de input.</p>
+                        <p style="margin-top: 1rem; margin-bottom: 0.5rem;" data-i18n="results.casestudy.actions"><strong>Ações Recomendadas:</strong></p>
+                        <ol style="padding-left: 1.2rem;">
+                            <li data-i18n="results.casestudy.action1.ref">Resposta Imediata: Isole o servidor e bloqueie o IP 83.170.101.10.</li>
+                            <li data-i18n="results.casestudy.action2.ref">Análise Forense: Analise logs e código da aplicação.</li>
+                            <li data-i18n="results.casestudy.action3.ref">Remediação: Use prepared statements.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="glass-card fade-in">
+            <h3 data-i18n="results.findings.title">Principais Descobertas</h3>
+            <ul>
+                <!-- 📝 TODO: Liste os principais resultados e descobertas -->
+                <li data-i18n="results.findings.item1">Importância do Contexto: Janelas de 512 tokens são cruciais para a qualidade das explicações XAI.</li>
+                <li data-i18n="results.findings.item2">Viabilidade do SLM: Modelos compactos podem substituir LLMs em nuvem para tarefas específicas.</li>
+                <li data-i18n="results.findings.item3">Ponto de Quebra: Janelas menores que 128 tokens degradam severamente a coerência.</li>
+                <li data-i18n="results.findings.item4">Estabilidade: Convergência de aprendizado rápida e estável (4 épocas).</li>
+            </ul>
+        </div>
+        
+        <div class="grid grid-2">
+            <div class="glass-card fade-in">
+                <h3 data-i18n="results.strengths.title">Pontos Fortes</h3>
+                <ul>
+                    <!-- 📝 TODO: Liste os pontos fortes identificados -->
+                    <li data-i18n="results.strengths.item1">Independência de APIs pagas e conexão com internet</li>
+                    <li data-i18n="results.strengths.item2">Privacidade total dos dados (processamento local)</li>
+                    <li data-i18n="results.strengths.item3">Especialização em vocabulário de segurança (Snort)</li>
+                    <li data-i18n="results.strengths.item4">Baixo custo de implementação e inferência</li>
+                </ul>
+            </div>
+            
+            <div class="glass-card fade-in">
+                <h3 data-i18n="results.limitations.title">Limitações</h3>
+                <ul>
+                    <!-- 📝 TODO: Liste as limitações identificadas -->
+                    <li data-i18n="results.limitations.item1">Dependência crítica de janelas de contexto amplas (>256 tokens)</li>
+                    <li data-i18n="results.limitations.item2">Necessidade de dados de treinamento sintéticos de alta qualidade</li>
+                    <li data-i18n="results.limitations.item3">Menor capacidade de generalização 'zero-shot' que LLMs massivos</li>
+                    <li data-i18n="results.limitations.item4">Risco de alucinação em cenários muito fora do padrão de treino</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
